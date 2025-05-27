@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>お役立ち情報 | ホワイトアウトサバイバル</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', 'Meiryo', sans-serif;
+      background: #e8ecf3 url('') no-repeat top center/cover;
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      position: relative;
+    }
+    .overlay {
+      background: rgba(30, 52, 80, 0.65);
+      position: absolute;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    header {
+      background: rgba(0, 32, 64, 0.80);
+      color: #fff;
+      padding: 2.5em 0 1em 0;
+      text-align: center;
+      letter-spacing: 0.1em;
+      box-shadow: 0 2px 8px #0004;
+      position: relative;
+      z-index: 1;
+    }
+    header img {
+      width: 320px; max-width: 90vw; border-radius: 10px; margin-bottom: 1em; box-shadow: 0 2px 12px #0006;
+    }
+    h1 { font-size: 2.1em; margin: 0.2em 0 0.4em 0;}
+    section {
+      background: rgba(255,255,255,0.87);
+      margin: 2.5em auto 2em auto;
+      padding: 2em 1.5em;
+      border-radius: 20px;
+      box-shadow: 0 6px 32px #1756a222;
+      max-width: 620px;
+      z-index: 2;
+      position: relative;
+    }
+    h2 {
+      color: #144070;
+      border-left: 8px solid #5dcaff;
+      padding-left: 0.5em;
+      margin-top: 0;
+      margin-bottom: 1.2em;
+      font-size: 1.3em;
+    }
+    .main-content {
+      font-size: 1.08em;
+      color: #233;
+      min-height: 8em;
+    }
+    .ref-link { margin-bottom: 0.6em; color: #457bb7; font-size: 0.98em; }
+    a.back-link {
+      display: inline-block;
+      margin-top: 2em;
+      color: #2070a0;
+      background: #e6f2fb;
+      border-radius: 6px;
+      padding: 0.5em 1.3em;
+      text-decoration: none;
+      border: 1px solid #b2d5ef;
+      box-shadow: 0 1px 5px #b1d0e820;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s;
+    }
+    a.back-link:hover {
+      background: #c8e7ff;
+      color: #105080;
+      border-color: #8acbf7;
+    }
+    @media (max-width: 700px) {
+      section { margin: 2em 0.5em 2em 0.5em; padding: 1em; }
+      header img { width: 95vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <header>
+    <img src="" alt="ホワイトアウトサバイバル公式ビジュアル">
+    <h1>お役立ち情報</h1>
+    <div class="ref-link">
+      参考サイト：<a href="https://www.whiteoutsurvival.wiki/ja/buildings/" target="_blank" style="color:#fff;text-decoration:underline;">https://www.whiteoutsurvival.wiki/ja/buildings/</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>ゲーム攻略・小ネタ・TIPS</h2>
+    <div class="main-content">
+      <!-- ここにお役立ち情報を箇条書きや表などで追記してください -->
+      <ul>
+        <li>初心者はまず司令部のレベルアップを最優先しましょう。</li>
+        <li>毎日無料でもらえる資源や加速アイテムを忘れずに受け取ること。</li>
+        <li>イベントや同盟ミッションを活用して効率よく資源を集めましょう。</li>
+        <li>施設の建築・強化はバフやイベントと組み合わせることで加速できます。</li>
+        <li>溶鉱炉や倉庫などのアップグレードは必要素材の種類と量に注意。</li>
+        <li>ペットやジンマンのスキル効果も活用しましょう。</li>
+      </ul>
+      <p>※さらに詳しい攻略や施設データはWikiや公式サイトを参考にしてください。</p>
+    </div>
+    <a class="back-link" href="index.html">&larr; トップページに戻る</a>
+  </section>
+</body>
+</html>

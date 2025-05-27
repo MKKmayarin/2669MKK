@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>建築時間・素材計算ツール | ホワイトアウトサバイバル</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', 'Meiryo', sans-serif;
+      background: #e8ecf3 url('https://www.centurygames.com/games/whiteout-survival/ja/img/banner.jpg') no-repeat top center/cover;
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      position: relative;
+    }
+    .overlay {
+      background: rgba(30, 52, 80, 0.65);
+      position: absolute;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    header {
+      background: rgba(0, 32, 64, 0.80);
+      color: #fff;
+      padding: 2.5em 0 1em 0;
+      text-align: center;
+      letter-spacing: 0.1em;
+      box-shadow: 0 2px 8px #0004;
+      position: relative;
+      z-index: 1;
+    }
+    header img {
+      width: 320px; max-width: 90vw; border-radius: 10px; margin-bottom: 1em; box-shadow: 0 2px 12px #0006;
+    }
+    h1 { font-size: 2.1em; margin: 0.2em 0 0.4em 0;}
+    section {
+      background: rgba(255,255,255,0.87);
+      margin: 2.5em auto 2em auto;
+      padding: 2em 1.5em;
+      border-radius: 20px;
+      box-shadow: 0 6px 32px #1756a222;
+      max-width: 620px;
+      z-index: 2;
+      position: relative;
+    }
+    h2 {
+      color: #144070;
+      border-left: 8px solid #5dcaff;
+      padding-left: 0.5em;
+      margin-top: 0;
+      margin-bottom: 1.2em;
+      font-size: 1.3em;
+    }
+    label, select, input { margin-bottom: 0.7em; }
+    .input-row { margin-bottom: 1.3em; }
+    .buff-row { margin-bottom: 1.2em; }
+    .pet-jinman-row { margin-bottom: 1.1em; }
+    .town-row { margin-bottom: 1.2em; }
+    .ref-link { margin-bottom: 0.6em; color: #457bb7; font-size: 0.98em; }
+    button {
+      background: linear-gradient(90deg, #40bfff 60%, #1d73af 100%);
+      color: #fff;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 7px;
+      padding: 0.6em 2.4em;
+      margin-top: 1.2em;
+      box-shadow: 0 2px 8px #004a6a22;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background: #2070a0; }
+    .result-box {
+      background: #f8fcff;
+      border: 2px solid #d0e8f9;
+      border-radius: 10px;
+      padding: 1.3em;
+      margin-top: 0.5em;
+      box-shadow: 0 2px 8px #b1d0e850;
+      color: #203040;
+      font-size: 1.05em;
+      min-height: 5em;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 1em;
+      background: #f6fafd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px #b1d0e850;
+    }
+    th, td {
+      border: 1px solid #d9eaf7;
+      padding: 0.55em;
+      text-align: center;
+    }
+    th { background: #e7f3fb; }
+    .checkbox-inline { display: inline-block; margin-right: 2em; }
+    @media (max-width: 700px) {
+      section { margin: 2em 0.5em 2em 0.5em; padding: 1em; }
+      header img { width: 95vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <header>
+    <img src="https://www.centurygames.com/games/whiteout-survival/ja/img/banner.jpg" alt="ホワイトアウトサバイバル公式ビジュアル">
+    <h1>建築時間・素材計算ツール</h1>
+    <div class="ref-link">
+      参考サイト：<a href="https://www.whiteoutsurvival.wiki/ja/buildings/" target="_blank" style="color:#fff;text-decoration:underline;">https://www.whiteoutsurvival.wiki/ja/buildings/</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>入力フォーム</h2>
+    <div class="input-row">
+      <label for="buildingType">計算対象：</label>
+      <select id="buildingType">
+        <option value="barracks">兵舎</option>
+        <option value="foundry" selected>溶鉱炉</option>
+        <option value="hq">司令部</option>
+        <option value="research">科学研究所</option>
+        <option value="embassy">大使館</option>
+        <option value="storage">倉庫</option>
+        <option value="wall">城壁</option>
+      </select>
+    </div>
+    <div class="input-row">
+      <span style="display:inline-block;" id="levelRow">
+        <label for="level">現在レベル（25～30）：</label>
+        <input type="number" id="level" min="25" max="30" value="30" style="width:5em;" />
+      </span>
+      <span style="margin-left:1em;">
+        <input type="checkbox" id="akaCheck" onclick="toggleAkaInput()" />
+        <label for="akaCheck" style="display:inline;">赤</label>
+      </span>
+      <span id="akaInputArea" style="display:none; margin-left:1em;">
+        <label for="akaLevel" style="display:inline;">赤レベル：</label>
+        <input type="number" id="akaLevel" min="1" max="5" value="1" style="width:5em;" />
+      </span>
+    </div>
+    <div class="input-row">
+      <label for="speedUp">建築速度加速（%）：</label>
+      <input type="number" id="speedUp" min="1" max="200" value="75" style="width:6em;" />
+    </div>
+    <div class="buff-row">
+      <div class="buff-check-group">
+        <label class="checkbox-inline">
+          <input type="checkbox" id="buffOfficer" /> 執行役員 +10%
+        </label>
+      </div>
+      <div class="buff-check-group">
+        <label class="checkbox-inline">
+          <input type="checkbox" id="buffSkill" /> 執政官スキル +10%
+        </label>
+      </div>
+    </div>
+    <div class="pet-jinman-row">
+      <label for="petSkill">ペットスキル：</label>
+      <select id="petSkill">
+        <option value="0">0 (0%)</option>
+        <option value="1">1 (5%)</option>
+        <option value="2">2 (7%)</option>
+        <option value="3">3 (9%)</option>
+        <option value="4">4 (12%)</option>
+        <option value="5" selected>5 (15%)</option>
+      </select>
+    </div>
+    <div class="pet-jinman-row">
+      <label for="jinmanSkill">ジンマンスキル：</label>
+      <select id="jinmanSkill">
+        <option value="0">0 (0%)</option>
+        <option value="1">1 (3%)</option>
+        <option value="2">2 (6%)</option>
+        <option value="3">3 (9%)</option>
+        <option value="4">4 (12%)</option>
+        <option value="5" selected>5 (15%)</option>
+      </select>
+    </div>
+    <div class="town-row">
+      <label class="checkbox-inline">
+        <input type="checkbox" id="townSpeedup" /> 町の加速 +20%
+      </label>
+    </div>
+    <button onclick="calculate()">計算する</button>
+  </section>
+
+  <section>
+    <h2>計算結果</h2>
+    <div id="result" class="result-box">
+      入力値を設定して「計算する」を押してください。
+    </div>
+  </section>
+
+  <section>
+    <h2>必要条件・素材表（溶鉱炉例）</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>レベル</th><th>肉</th><th>木</th><th>石炭</th><th>鉄</th><th>時間</th><th>パワー</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>25</td><td>81M</td><td>81M</td><td>16M</td><td>4M</td><td>18d 08:22:00</td><td>833,600</td></tr>
+        <tr><td>26</td><td>100M</td><td>100M</td><td>21M</td><td>5.2M</td><td>21d 02:26:00</td><td>960,100</td></tr>
+        <tr><td>27</td><td>140M</td><td>140M</td><td>24M</td><td>7.4M</td><td>25d 07:43:00</td><td>1,086,600</td></tr>
+        <tr><td>28</td><td>190M</td><td>190M</td><td>39M</td><td>9.9M</td><td>29d 02:52:00</td><td>1,213,100</td></tr>
+        <tr><td>29</td><td>240M</td><td>240M</td><td>49M</td><td>12M</td><td>33d 11:42:00</td><td>1,339,600</td></tr>
+        <tr><td>30</td><td>300M</td><td>300M</td><td>60M</td><td>15M</td><td>40d 04:27:00</td><td>1,523,500</td></tr>
+      </tbody>
+    </table>
+    <p>※溶鉱炉Lv25～30の例です。画像や参考サイトをご参照ください。</p>
+  </section>
+
+  <script>
+    // 赤チェックボックスのON/OFFで赤レベル入力を切り替え、レベル欄も表示/非表示
+    function toggleAkaInput() {
+      const check = document.getElementById('akaCheck').checked;
+      document.getElementById('akaInputArea').style.display = check ? 'inline' : 'none';
+      document.getElementById('levelRow').style.display = check ? 'none' : 'inline-block';
+    }
+    // 溶鉱炉Lv25～30データ
+    const foundryData = {
+      25: { time: '18d 08:22:00', meat: 81, wood: 81, coal: 16, iron: 4, power: 833600 },
+      26: { time: '21d 02:26:00', meat: 100, wood: 100, coal: 21, iron: 5.2, power: 960100 },
+      27: { time: '25d 07:43:00', meat: 140, wood: 140, coal: 24, iron: 7.4, power: 1086600 },
+      28: { time: '29d 02:52:00', meat: 190, wood: 190, coal: 39, iron: 9.9, power: 1213100 },
+      29: { time: '33d 11:42:00', meat: 240, wood: 240, coal: 49, iron: 12, power: 1339600 },
+      30: { time: '40d 04:27:00', meat: 300, wood: 300, coal: 60, iron: 15, power: 1523500 },
+    };
+    // 時間文字列を秒に変換
+    function parseTimeToSeconds(str) {
+      // 例: 18d 08:22:00
+      const match = str.match(/(\d+)d\s+(\d+):(\d+):(\d+)/);
+      if (!match) return 0;
+      const [_, d, h, m, s] = match.map(Number);
+      return d * 24 * 3600 + h * 3600 + m * 60 + s;
+    }
+    // 秒を「日 時間 分 秒」形式に
+    function secondsToText(secs) {
+      const days = Math.floor(secs / 86400);
+      const hours = Math.floor((secs % 86400) / 3600);
+      const minutes = Math.floor((secs % 3600) / 60);
+      const seconds = Math.floor(secs % 60);
+      return `${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
+    }
+    // 秒を分に変換
+    function secondsToMinutes(secs) {
+      return Math.round(secs / 60);
+    }
+    // 計算
+    function calculate() {
+      const buildingType = document.getElementById('buildingType').value;
+
+      // 溶鉱炉以外は未対応
+      if (buildingType !== "foundry") {
+        document.getElementById('result').innerText = "現在は溶鉱炉のみ対応しています。";
+        return;
+      }
+
+      // レベルか赤レベルの取得
+      let level;
+      if (document.getElementById('akaCheck').checked) {
+        level = null; // 赤レベル利用時の実装はここで対応
+      } else {
+        level = parseInt(document.getElementById('level').value, 10);
+      }
+
+      // データ取得（今回は赤レベルは未対応。レベル入力のみ対応）
+      const data = foundryData[level];
+      if (!data) {
+        document.getElementById('result').innerText = "未対応のレベルです。";
+        return;
+      }
+
+      // 基本時間（秒）
+      const baseSecs = parseTimeToSeconds(data.time);
+
+      // 加速・バフ計算
+      let speedUp = Number(document.getElementById('speedUp').value) || 0;
+      if (document.getElementById('buffOfficer').checked) speedUp += 10;
+      if (document.getElementById('buffSkill').checked) speedUp += 10;
+
+      let petEffect = [0, 5, 7, 9, 12, 15][parseInt(document.getElementById('petSkill').value, 10)];
+      let jinmanEffect = [0, 3, 6, 9, 12, 15][parseInt(document.getElementById('jinmanSkill').value, 10)];
+
+      let townSpeed = document.getElementById('townSpeedup').checked ? 20 : 0;
+
+      // 計算式
+      const totalBuff = speedUp + petEffect + jinmanEffect;
+      const afterBuffSecs = baseSecs / ((100 + totalBuff) / 100) * (1 - townSpeed / 100);
+      const shortSecs = baseSecs - afterBuffSecs;
+
+      // 必要素材（ジンマンスキルで減少）
+      let materialReduce = jinmanEffect / 100;
+      function reduceVal(val) {
+        return Math.round(val * (1 - materialReduce) * 10) / 10;
+      }
+
+      // 結果出力
+      document.getElementById('result').innerHTML = `
+        <strong>初期の時間：</strong> ${secondsToText(baseSecs)}（${secondsToMinutes(baseSecs)}分）<br>
+        <strong>バフ設定後の時間：</strong> ${secondsToText(afterBuffSecs)}（${secondsToMinutes(afterBuffSecs)}分）<br>
+        <strong>短縮した時間：</strong> ${secondsToText(shortSecs)}（${secondsToMinutes(shortSecs)}分）<br>
+        <hr>
+        <strong>必要素材：</strong><br>
+        肉：${reduceVal(data.meat)}M　木：${reduceVal(data.wood)}M　石炭：${reduceVal(data.coal)}M　鉄：${reduceVal(data.iron)}M
+        <br>
+        <strong>パワー：</strong> ${data.power.toLocaleString()}<br>
+        <span style="color:#888;">※溶鉱炉Lv${level}での例です。他設備は今後対応予定。</span>
+      `;
+    }
+  </script>
+</body>
+</html>

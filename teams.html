@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>メンバー紹介 | ホワイトアウトサバイバル</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', 'Meiryo', sans-serif;
+      background: #e8ecf3 url('') no-repeat top center/cover;
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      position: relative;
+    }
+    .overlay {
+      background: rgba(30, 52, 80, 0.65);
+      position: absolute;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    header {
+      background: rgba(0, 32, 64, 0.80);
+      color: #fff;
+      padding: 2.5em 0 1em 0;
+      text-align: center;
+      letter-spacing: 0.1em;
+      box-shadow: 0 2px 8px #0004;
+      position: relative;
+      z-index: 1;
+    }
+    header img {
+      width: 320px; max-width: 90vw; border-radius: 10px; margin-bottom: 1em; box-shadow: 0 2px 12px #0006;
+    }
+    h1 { font-size: 2.1em; margin: 0.2em 0 0.4em 0;}
+    section {
+      background: rgba(255,255,255,0.87);
+      margin: 2.5em auto 2em auto;
+      padding: 2em 1.5em;
+      border-radius: 20px;
+      box-shadow: 0 6px 32px #1756a222;
+      max-width: 1000px;
+      z-index: 2;
+      position: relative;
+    }
+    h2 {
+      color: #144070;
+      border-left: 8px solid #5dcaff;
+      padding-left: 0.5em;
+      margin-top: 0;
+      margin-bottom: 1.2em;
+      font-size: 1.3em;
+    }
+    .member-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #f8fbfd;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px #b1d0e850;
+      margin-bottom: 1.5em;
+    }
+    .member-table th, .member-table td {
+      border: 1px solid #d9eaf7;
+      padding: 0.5em 0.7em;
+      text-align: center;
+      font-size: 1em;
+    }
+    .member-table th {
+      background: #e7f3fb;
+      color: #1756a2;
+      font-weight: bold;
+    }
+    .rank-r5 { background: #ffe399; font-weight: bold; color: #b28200;}
+    .rank-r4 { background: #b7eaff; font-weight: bold; color: #006a8a;}
+    .rank-r3 { background: #d8ffe0; font-weight: bold; color: #107a2b;}
+    .rank-other { background: #f8fcff;}
+    .ref-link { margin-bottom: 0.6em; color: #457bb7; font-size: 0.98em; }
+    a.back-link {
+      display: inline-block;
+      margin-top: 2em;
+      color: #2070a0;
+      background: #e6f2fb;
+      border-radius: 6px;
+      padding: 0.5em 1.3em;
+      text-decoration: none;
+      border: 1px solid #b2d5ef;
+      box-shadow: 0 1px 5px #b1d0e820;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s;
+    }
+    a.back-link:hover {
+      background: #c8e7ff;
+      color: #105080;
+      border-color: #8acbf7;
+    }
+    .table-section-title {
+      font-size: 1.08em;
+      font-weight: bold;
+      color: #1756a2;
+      margin: 2em 0 0.5em 0;
+      letter-spacing: 0.04em;
+      text-align: left;
+    }
+    @media (max-width: 1100px) {
+      section { max-width: 99vw; }
+      .member-table th, .member-table td { font-size: 0.93em; }
+    }
+    @media (max-width: 700px) {
+      section { margin: 2em 0.5em 2em 0.5em; padding: 1em; }
+      header img { width: 95vw; }
+      .member-table th, .member-table td { font-size: 0.88em; padding: 0.35em 0.6em;}
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <header>
+    <img src="" alt="ホワイトアウトサバイバル公式ビジュアル">
+    <h1>メンバー紹介</h1>
+    <div class="ref-link">
+      参考サイト：<a href="https://www.whiteoutsurvival.wiki/ja/buildings/" target="_blank" style="color:#fff;text-decoration:underline;">https://www.whiteoutsurvival.wiki/ja/buildings/</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>ギルド・チームメンバー一覧</h2>
+    <div class="table-section-title">R5　盟主</div>
+    <table class="member-table">
+      <thead>
+        <tr>
+          <th>戦力</th>
+          <th>名前</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="rank-r5"><td>42.2M</td><td>パンチ鴨川</td></tr>
+      </tbody>
+    </table>
+
+    <div class="table-section-title">R4　サポートメンバー</div>
+    <table class="member-table">
+      <thead>
+        <tr>
+          <th>戦力</th>
+          <th>名前</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="rank-r4"><td>88M</td><td>ステイサム</td></tr>
+        <tr class="rank-r4"><td>76.9M</td><td>そら左衛門</td></tr>
+        <tr class="rank-r4"><td>44.4M</td><td>みゅげらん</td></tr>
+        <tr class="rank-r4"><td>38.5M</td><td>旅行先わリオ</td></tr>
+        <tr class="rank-r4"><td>44.4M</td><td>みゅげらん</td></tr>
+        <tr class="rank-r4"><td>34.4M</td><td>いっぺー師匠</td></tr>
+      </tbody>
+    </table>
+
+    <div class="table-section-title">R3　戦友さん</div>
+    <table class="member-table">
+      <thead>
+        <tr>
+          <th>戦力</th>
+          <th>名前</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="rank-r3"><td>89.2M</td><td>MASA</td></tr>
+        <tr class="rank-r3"><td>86.4M</td><td>ちゃんちゃん</td></tr>
+        <tr class="rank-r3"><td>59.3M</td><td>シャオロン</td></tr>
+        <tr class="rank-r3"><td>55.9M</td><td>うろた㌠</td></tr>
+        <tr class="rank-r3"><td>53.3M</td><td>まやりん</td></tr>
+        <tr class="rank-r3"><td>48.7M</td><td>DAI72811</td></tr>
+        <tr class="rank-r3"><td>46.3M</td><td>アビービ</td></tr>
+        <tr class="rank-r3"><td>45.5M</td><td>ツルリン</td></tr>
+        <tr class="rank-r3"><td>41.1M</td><td>ヌメヌメ</td></tr>
+        <tr class="rank-r3"><td>40.3M</td><td>ポチプロ淀川</td></tr>
+        <tr class="rank-r3"><td>39.9M</td><td>ちぃー</td></tr>
+        <tr class="rank-r3"><td>38.5M</td><td>もずすけ</td></tr>
+        <tr class="rank-r3"><td>31.7M</td><td>リナん</td></tr>
+        <tr class="rank-r3"><td>19.0M</td><td>Ride</td></tr>
+        <tr class="rank-r3"><td>17.8M</td><td>あっこ</td></tr>
+        <tr class="rank-r3"><td>66.5M</td><td>MILK</td></tr>
+        <tr class="rank-r3"><td>62.4M</td><td>シヴァ</td></tr>
+        <tr class="rank-r3"><td>55.7M</td><td>MAXX</td></tr>
+        <tr class="rank-r3"><td>53.5M</td><td>クロム</td></tr>
+        <tr class="rank-r3"><td>51.4M</td><td>トマト</td></tr>
+        <tr class="rank-r3"><td>50.9M</td><td>国産豆乳</td></tr>
+        <tr class="rank-r3"><td>48.7M</td><td>やなぎ</td></tr>
+        <tr class="rank-r3"><td>45.9M</td><td>Maru</td></tr>
+        <tr class="rank-r3"><td>42.5M</td><td>ウニパンマン</td></tr>
+        <tr class="rank-r3"><td>41.7M</td><td>ペヤングⓂ</td></tr>
+        <tr class="rank-r3"><td>40.7M</td><td>にゃんこ</td></tr>
+        <tr class="rank-r3"><td>37.1M</td><td>マンシー</td></tr>
+        <tr class="rank-r3"><td>37.0M</td><td>あかん改</td></tr>
+        <tr class="rank-r3"><td>36.3M</td><td>アルペン</td></tr>
+        <tr class="rank-r3"><td>36.2M</td><td>ヒイロ・ユイ</td></tr>
+        <tr class="rank-r3"><td>35.6M</td><td>こうプラス</td></tr>
+        <tr class="rank-r3"><td>35.0M</td><td>ゆきっぺっぺちゃん</td></tr>
+        <tr class="rank-r3"><td>34.9M</td><td>鉛筆戦士</td></tr>
+        <tr class="rank-r3"><td>34.6M</td><td>フウガ</td></tr>
+        <tr class="rank-r3"><td>34.1M</td><td>すくな</td></tr>
+        <tr class="rank-r3"><td>33.4M</td><td>Naaa</td></tr>
+        <tr class="rank-r3"><td>30.6M</td><td>ぽこ</td></tr>
+        <tr class="rank-r3"><td>30.5M</td><td>mimi</td></tr>
+        <tr class="rank-r3"><td>30.4M</td><td>からこ</td></tr>
+        <tr class="rank-r3"><td>25.4M</td><td>yuki</td></tr>
+        <tr class="rank-r3"><td>24.6M</td><td>にじさん</td></tr>
+        <tr class="rank-r3"><td>23.8M</td><td>西日本</td></tr>
+        <tr class="rank-r3"><td>22.1M</td><td>まゆなな</td></tr>
+      </tbody>
+    </table>
+    <a class="back-link" href="index.html">&larr; トップページに戻る</a>
+  </section>
+</body>
+</html>
