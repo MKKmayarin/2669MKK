@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>パスワード認証 | ホワイトアウトサバイバル</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.0.0/sha.js"></script>
   <style>
     body {
       background: #e8ecf3;
@@ -70,24 +71,34 @@
   </div>
   <div id="mainContent" style="display:none"></div>
   <script>
-    // パスワードをここに設定
-    const CORRECT_PASSWORD = "MKK";
-    function showIndex2() {
-      document.getElementById('mainContent').innerHTML = `
-        <iframe src="test.html" style="width:100vw; height:100vh; min-height:900px; border:none;" title="index2"></iframe>
-      `;
-      document.getElementById('mainContent').style.display = '';
+    // 正しいハッシュ化されたパスワード（事前に生成して設定）
+    const CORRECT_HASH = "9e107d9d372bb6826bd81d3542a419d6"; // 例: "MKK" を SHA-256 でハッシュ化したものを設定
+
+    function hashPassword(password) {
+      const shaObj = new jsSHA("SHA-256", "TEXT");
+      shaObj.update(password);
+      return shaObj.getHash("HEX");
     }
+
     function checkPassword() {
-      const input = document.getElementById('passwordInput').value;
-      if (input === CORRECT_PASSWORD) {
+      const inputPassword = document.getElementById('passwordInput').value;
+      const hashedInput = hashPassword(inputPassword);
+
+      if (hashedInput === CORRECT_HASH) {
         document.getElementById('authContainer').style.display = 'none';
         showIndex2();
       } else {
         document.getElementById('errorMsg').textContent = 'パスワードが違います。';
       }
     }
-    // Enterキーで認証
+
+    function showIndex2() {
+      document.getElementById('mainContent').innerHTML = `
+        <iframe src="test.html" style="width:100vw; height:100vh; min-height:900px; border:none;" title="index2"></iframe>
+      `;
+      document.getElementById('mainContent').style.display = '';
+    }
+
     document.getElementById('passwordInput').addEventListener('keydown', function(e){
       if(e.key === "Enter") checkPassword();
     });
