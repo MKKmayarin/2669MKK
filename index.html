@@ -71,8 +71,6 @@
   </div>
   <div id="mainContent" style="display:none"></div>
   <script>
-    // 正しいハッシュ化されたパスワード（事前に生成して設定）
-    const CORRECT_HASH = "9e107d9d372bb6826bd81d3542a419d6"; // 例: "MKK" を SHA-256 でハッシュ化したものを設定
 
     function hashPassword(password) {
       const shaObj = new jsSHA("SHA-256", "TEXT");
